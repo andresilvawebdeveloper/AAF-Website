@@ -1,3 +1,7 @@
+/* ALBINO ALVES E FILHOS, LDA - Stylesheet 2026
+   Organização: Variáveis > Global > Navbar > Hero > Serviços > Frota > Partners > Footer > 404 > Mobile
+*/
+
 :root {
     --primary: #2563eb;
     --dark: #0f172a;
@@ -7,13 +11,25 @@
     --text-light: #64748b;
 }
 
+/* --- GLOBAL --- */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
 
-body { background: var(--bg-white); color: var(--dark); scroll-behavior: smooth; }
+body { background: var(--bg-white); color: var(--dark); scroll-behavior: smooth; overflow-x: hidden; }
 
 .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
 
-/* NAVBAR GLASS */
+.section { padding: 80px 0; }
+
+.badge {
+    background: #e2e8f0;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+/* --- NAVBAR GLASS --- */
 .glass-nav {
     position: fixed;
     top: 0;
@@ -40,9 +56,10 @@ body { background: var(--bg-white); color: var(--dark); scroll-behavior: smooth;
     align-items: center;
     gap: 8px;
     text-decoration: none;
+    transition: 0.3s;
 }
 
-/* HERO CLEAN & ABOUT GRID */
+/* --- HERO & ABOUT --- */
 .hero-clean {
     padding-top: 150px;
     padding-bottom: 100px;
@@ -52,12 +69,7 @@ body { background: var(--bg-white); color: var(--dark); scroll-behavior: smooth;
     align-items: center;
 }
 
-.about-grid {
-    display: grid;
-    grid-template-columns: 1.2fr 0.8fr;
-    gap: 40px;
-    align-items: center;
-}
+.about-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
 
 .hero-glass-card {
     background: var(--glass-bg);
@@ -68,16 +80,6 @@ body { background: var(--bg-white); color: var(--dark); scroll-behavior: smooth;
     box-shadow: 0 20px 40px rgba(0,0,0,0.03);
 }
 
-.badge {
-    background: #e2e8f0;
-    padding: 6px 16px;
-    border-radius: 100px;
-    font-size: 0.75rem;
-    font-weight: 800;
-    text-transform: uppercase;
-}
-
-/* Atualizado para 32 anos de história */
 .hero-glass-card h1 { font-size: 3.2rem; line-height: 1.1; margin: 20px 0; font-weight: 800; }
 .hero-glass-card h1 strong { color: var(--primary); }
 .hero-glass-card p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px; line-height: 1.6; }
@@ -93,14 +95,7 @@ body { background: var(--bg-white); color: var(--dark); scroll-behavior: smooth;
     transition: 0.3s;
 }
 
-.btn-dark:hover { transform: translateY(-3px); opacity: 0.9; }
-
-/* ABOUT STATS */
-.about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
 .stat-box {
     background: var(--glass-bg);
@@ -110,19 +105,87 @@ body { background: var(--bg-white); color: var(--dark); scroll-behavior: smooth;
     border-radius: 24px;
     text-align: center;
     transition: 0.3s;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.02);
 }
 
 .stat-box:hover { transform: translateY(-5px); background: #ffffff; border-color: var(--primary); }
 .stat-box i { font-size: 2rem; color: var(--primary); margin-bottom: 12px; }
 .stat-box h3 { font-size: 1.8rem; font-weight: 800; color: var(--dark); }
-.stat-box p { font-size: 0.85rem; font-weight: 600; color: var(--text-light); }
 
-/* FLEET GLASS CARDS */
-.section { padding: 80px 0; }
+/* --- SECÇÃO SERVIÇOS (COM EFEITO DE ROTAÇÃO) --- */
+/* Galeria com Snap (Encaixe Automático) */
+/* --- SECÇÃO SERVIÇOS --- */
+.section-services { padding: 100px 0; background: #fdfdfd; }
+
+.services-wrapper { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; /* Texto à esquerda, fotos à direita */
+    gap: 60px; 
+    align-items: center; 
+}
+
+.services-text h2 { font-size: 2.8rem; margin: 20px 0; }
+.services-text p { color: var(--text-light); line-height: 1.6; }
+
+/* GALERIA DESKTOP (Efeito Magnético) */
+.gallery-wrapper {
+    height: 450px; 
+    width: 100%; 
+    max-width: 450px;
+    border-radius: 30px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    transform: rotate(-90deg); /* Truque para o scroll vertical agir como horizontal */
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    margin-left: auto; /* Cola a galeria à direita no PC */
+    scroll-snap-type: y mandatory;
+}
+
+.gallery-wrapper::-webkit-scrollbar { display: none; }
+
+.scroll-horizontal-container { display: flex; flex-direction: column; }
+
+.img-slide {
+    width: 450px; 
+    height: 450px;
+    transform: rotate(90deg); /* Deixa a imagem direita */
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+    scroll-snap-align: start; /* Faz a imagem "prender" ao topo do contentor rodado */
+}
+
+/* --- AJUSTE MOBILE --- */
+@media (max-width: 900px) {
+    .services-wrapper { 
+        grid-template-columns: 1fr; /* Texto em cima, fotos em baixo */
+        text-align: center;
+        gap: 40px;
+    }
+
+    .gallery-wrapper {
+        transform: rotate(0deg); /* Remove rotação no mobile */
+        height: 400px; 
+        max-width: 100%;
+        overflow-x: scroll; /* Scroll horizontal natural */
+        overflow-y: hidden;
+        display: flex;
+        scroll-snap-type: x mandatory; /* Snap horizontal */
+        margin: 0 auto;
+    }
+
+    .scroll-horizontal-container { flex-direction: row; }
+
+    .img-slide {
+        width: 100vw; /* Imagem ocupa a largura total do ecrã */
+        height: 400px;
+        transform: rotate(0deg); 
+        scroll-snap-align: center;
+    }
+}
+/* --- FROTA GRID --- */
 .section-header { margin-bottom: 50px; text-align: center; }
-.section-header h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 10px; }
-.section-header p { color: var(--text-light); }
+.section-header h2 { font-size: 2.5rem; font-weight: 800; }
 
 .fleet-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 25px; }
 
@@ -139,139 +202,72 @@ body { background: var(--bg-white); color: var(--dark); scroll-behavior: smooth;
 .img-container { border-radius: 20px; overflow: hidden; height: 200px; margin-bottom: 15px; }
 .img-container img { width: 100%; height: 100%; object-fit: cover; }
 
-.fleet-info h3 { font-size: 1.1rem; margin-bottom: 5px; }
-.fleet-info span { color: var(--primary); font-weight: 700; font-size: 0.8rem; }
-
-/* MARCAS PARCEIRAS */
+/* --- MARCAS PARCEIRAS --- */
 .partners-grid { 
     display: grid; 
     grid-template-columns: repeat(4, 1fr); 
     gap: 40px; 
     justify-items: center; 
     align-items: center;
-    margin-top: 40px;
+}
+.partners-grid img { width: 160px; height: 80px; object-fit: contain; transition: 0.3s; }
+
+/* --- FOOTER SIMPLIFICADO --- */
+.footer-simple { padding: 30px 0; border-top: 1px solid #f1f5f9; background: #ffffff; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; color: #94a3b8; font-size: 0.9rem; }
+.footer-actions { display: flex; align-items: center; gap: 25px; }
+.footer-actions i { font-size: 1.5rem; color: #1877F2; transition: 0.3s; }
+.legal-text { font-size: 0.75rem; color: #cbd5e1; margin-top: 5px; }
+
+/* --- PÁGINA 404 & ANIMAÇÃO CAMIÃO --- */
+.error-page { height: 100vh; display: flex; align-items: center; justify-content: center; background: #f8fafc; text-align: center; overflow: hidden; }
+.error-logo { width: 120px; border-radius: 15px; margin-bottom: 30px; }
+.error-content h1 { font-size: 8rem; font-weight: 800; color: var(--primary); opacity: 0.2; }
+
+.truck-traveler {
+    position: fixed;
+    font-size: 1.8rem;
+    color: var(--primary);
+    opacity: 0.4;
+    z-index: 1;
+    pointer-events: none;
+    animation: randomMove 25s linear infinite, vibration 0.2s infinite;
 }
 
-.partners-grid img { 
-    width: 160px; 
-    height: 80px; 
-    object-fit: contain; 
-    transition: 0.3s ease;
+@keyframes randomMove {
+    0%   { top: 10%; left: -50px; transform: scaleX(1); } 
+    25%  { top: 70%; left: 30%; transform: scaleX(1); }
+    45%  { top: 20%; left: 60%; transform: scaleX(-1); }
+    70%  { top: 85%; left: 85%; transform: scaleX(-1); }
+    85%  { top: 40%; left: 10%; transform: scaleX(1); }
+    100% { top: 10%; left: 110vw; transform: scaleX(1); }
 }
 
-.partners-grid img:hover { transform: scale(1.1); }
+@keyframes vibration { 0%, 100% { margin-top: 0; } 50% { margin-top: -2px; } }
 
-.footer-clean { padding: 50px 0; text-align: center; border-top: 1px solid #f1f5f9; color: #94a3b8; font-size: 0.9rem; }
+/* --- RESPONSIVIDADE (MOBILE FIRST ADJUSTMENTS) --- */
 
-/* MOBILE RESPONSIVITY */
 @media (max-width: 900px) {
     .about-grid { grid-template-columns: 1fr; }
-    .about-stats { gap: 15px; }
-    .hero-glass-card { padding: 30px; text-align: center; }
     .hero-glass-card h1 { font-size: 2.4rem; }
+    
+    /* Galeria Mobile First */
+    .services-wrapper { grid-template-columns: 1fr; text-align: center; }
+    .gallery-nav-dots { justify-content: center; }
+    .gallery-wrapper {
+        transform: rotate(0deg); 
+        height: 350px; 
+        max-width: 100%;
+        overflow-x: scroll; 
+        overflow-y: hidden;
+        display: flex;
+    }
+    .scroll-horizontal-container { flex-direction: row; }
+    .img-slide { width: 85vw; height: 350px; transform: rotate(0deg); margin-right: 15px; }
 }
 
 @media (max-width: 768px) {
     .nav-links { display: none; }
-    .partners-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .partners-grid img { width: 120px; height: 60px; }
-}
-/* Layout da Secção */
-.section-services { padding: 100px 0; background: #fdfdfd; }
-.services-wrapper { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 60px; 
-    align-items: center; 
-    max-width: 1100px; 
-    margin: 0 auto;
-}
-
-/* Esquerda: Texto e Nav */
-.services-text h2 { font-size: 2.8rem; margin: 20px 0; }
-.gallery-nav-dots { margin-top: 30px; display: flex; gap: 10px; }
-.gallery-nav-dots a {
-    width: 12px; height: 12px; background: #bbb; border-radius: 50%;
-    transition: 0.3s; text-decoration: none;
-}
-.gallery-nav-dots a:hover { background: var(--primary); transform: scale(1.2); }
-
-/* Direita: O efeito de rotação que enviou */
-.gallery-wrapper {
-    height: 450px; width: 450px;
-    border-radius: 30px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-    transform: rotate(-90deg); /* O truque do scroll */
-    overflow-y: scroll;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-}
-.gallery-wrapper::-webkit-scrollbar { display: none; }
-
-.scroll-horizontal-container {
-    display: flex;
-    flex-direction: column;
-}
-
-.img-slide {
-    width: 450px; height: 450px;
-    transform: rotate(90deg); /* Desfaz a rotação para a imagem ficar direita */
-    background-size: cover;
-    background-position: center;
-    flex-shrink: 0;
-}/* Estilo para a bolinha ativa */
-.gallery-nav-dots a.active {
-    background: var(--dark); /* Ou var(--primary) se preferir o azul */
-    transform: scale(1.3);
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-.footer-simple {
-    padding: 30px 0;
-    border-top: 1px solid #f1f5f9;
-    background: #ffffff;
-}
-
-.footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #94a3b8;
-    font-size: 0.9rem;
-}
-
-.footer-actions {
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.footer-actions i {
-    font-size: 1.5rem;
-    color: #1877F2;
-    transition: 0.3s;
-}
-
-.footer-actions i:hover {
-    transform: translateY(-3px);
-}
-
-.livro-link img {
-    height: 25px; /* Tamanho reduzido para não quebrar a linha */
-    filter: grayscale(1);
-    opacity: 0.6;
-    transition: 0.3s;
-}
-
-.livro-link:hover img {
-    filter: grayscale(0);
-    opacity: 1;
-}
-
-/* Ajuste para ecrãs pequenos */
-@media (max-width: 768px) {
-    .footer-content {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
-    }
+    .partners-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-content { flex-direction: column; gap: 15px; text-align: center; }
 }
